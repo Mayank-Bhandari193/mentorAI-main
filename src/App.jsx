@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import PageNotFound from './lib/PageNotFound';
 import { AuthProvider, useAuth } from '@/lib/AuthContext';
 import UserNotRegisteredError from '@/components/UserNotRegisteredError';
+import Login from './pages/Login';
 
 import AppLayout from '@/components/layout/AppLayout';
 import Dashboard from '@/pages/Dashboard';
@@ -20,6 +21,8 @@ import AIAssistant from '@/pages/AIAssistant';
 import InterviewPrep from '@/pages/InterviewPrep';
 import Roadmap from '@/pages/Roadmap';
 import Leaderboard from '@/pages/Leaderboard';
+
+const user = localStorage.getItem('user');
 
 const AuthenticatedApp = () => {
   const { isLoadingAuth, isLoadingPublicSettings, authError, navigateToLogin } = useAuth();
@@ -43,6 +46,7 @@ const AuthenticatedApp = () => {
 
   return (
     <Routes>
+    <Route path="/login" element={<Login />} />
       <Route element={<AppLayout />}>
         <Route path="/" element={<Dashboard />} />
         <Route path="/timer" element={<FocusTimer />} />
